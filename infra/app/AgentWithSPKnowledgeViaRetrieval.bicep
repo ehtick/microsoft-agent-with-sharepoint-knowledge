@@ -32,6 +32,12 @@ resource identity 'Microsoft.ManagedIdentity/userAssignedIdentities@2023-01-31' 
 resource azureAdApp 'Microsoft.Graph/applications@v1.0' = {
   displayName: 'AI App with SharePoint Knowledge'
   uniqueName: 'spe-compliance-app-${resourceToken}'
+  web: {
+    redirectUris: [
+      'https://${appFqdn}/signin-oidc'
+    ]
+    logoutUrl: 'https://${appFqdn}/signout-oidc'
+  }
 
   resource managedIdentityFederatedCredential 'federatedIdentityCredentials@v1.0' = {
     name: '${azureAdApp.uniqueName}/managed-identity-federation'
@@ -51,6 +57,8 @@ resource containerRegistry 'Microsoft.ContainerRegistry/registries@2023-01-01-pr
 resource containerAppsEnvironment 'Microsoft.App/managedEnvironments@2023-05-01' existing = {
   name: containerAppsEnvironmentName
 }
+
+var appFqdn = '${name}.${containerAppsEnvironment.properties.defaultDomain}'
 
 resource acrPullRole 'Microsoft.Authorization/roleAssignments@2022-04-01' = {
   scope: containerRegistry
