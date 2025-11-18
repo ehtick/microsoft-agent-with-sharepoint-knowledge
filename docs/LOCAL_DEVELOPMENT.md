@@ -46,7 +46,7 @@
         - `Files.Read.All`
         - `Sites.Read.All`
         - `Mail.Send`
-        - `User.Read.All`
+        - `User.Read`
       - For Azure AD authentication for Azure AI Foundry, also add:
         - Go to **Add a permission** → **APIs my organization uses**
         - Search for "Azure AI Services" or use the Application ID: `2ff814a6-3304-4ab8-85cb-cd0e6f879c1d`

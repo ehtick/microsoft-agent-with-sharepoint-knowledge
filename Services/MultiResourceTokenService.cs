@@ -20,7 +20,7 @@ public class MultiResourceTokenService : IMultiResourceTokenService
         "https://graph.microsoft.com/Files.Read.All",
         "https://graph.microsoft.com/Sites.Read.All",
         "https://graph.microsoft.com/Mail.Send",
-        "https://graph.microsoft.com/User.Read.All"
+        "https://graph.microsoft.com/User.Read"
     };
     
     private static readonly string[] AzureAIScopes = {
